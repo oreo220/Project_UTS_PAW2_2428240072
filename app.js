@@ -33,8 +33,6 @@ app.use('/anggota-gym', anggotaGymRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-
-
 mongoose.connect(process.env.DB_URI)
   .then(() => {
     console.log('Terhubung ke MongoDB');
