@@ -8,6 +8,7 @@ const cors = require('cors');
 const logger = require('./middlewares/logger');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 const pelatihRoutes = require('./routes/pelatihRoutes');
+const anggotaGymRoutes = require('./routes/anggotaGymRoutes');
 
 const app = express();
 
@@ -27,9 +28,13 @@ app.get('/', (req, res) => {
 });
 
 // Routes akan dipasang pada tahap berikutnya.
-
+app.use('/pelatih', pelatihRoutes);
+app.use('/anggota-gym', anggotaGymRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
+
+
+
 mongoose.connect(process.env.DB_URI)
   .then(() => {
     console.log('Terhubung ke MongoDB');
