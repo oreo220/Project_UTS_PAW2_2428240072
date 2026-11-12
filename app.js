@@ -7,11 +7,11 @@ const cors = require('cors');
 
 const logger = require('./middlewares/logger');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
+const pelatihRoutes = require('./routes/pelatihRoutes');
 
 const app = express();
 
 app.use(logger);
-
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     methods: ['GET', 'POST']
@@ -19,6 +19,7 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use('/pelatih', pelatihRoutes);
 app.get('/', (req, res) => {
     res.json({
         message: 'RESTful API Pusat Kebugaran'
